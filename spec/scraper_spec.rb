@@ -44,6 +44,7 @@ describe "Scraper" do
       profile_url = "https://learn-co-curriculum.github.io/student-scraper-test-page/students/david-kim.html"
       scraped_student = Scraper.scrape_profile_page(profile_url)
       expect(scraped_student).to be_a(Hash)
+      require 'pry'; binding.pry
       expect(scraped_student).to match(student_david_hash)
     end
   end

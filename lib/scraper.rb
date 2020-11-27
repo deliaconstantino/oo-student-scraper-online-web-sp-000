@@ -16,10 +16,24 @@ class Scraper
     student_array
   end
 
+<<<<<<< HEAD
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(open(profile_url))
     student_details = Hash.new(0)
     hrefs = profile.css(".social-icon-container a").map {|anchor| anchor["href"] }
+=======
+# attr :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
+
+  def self.scrape_profile_page(profile_url)
+    # binding.pry
+    profile = Nokogiri::HTML(open(profile_url))
+    student_details = Hash.new(0)
+    student_details[:name] = profile.css(".profile-name").text
+    student_details[:location] = profile.css(".profile-location").text
+
+    hrefs = profile.css(".social-icon-container a").map {|anchor| anchor["href"] }
+
+>>>>>>> e4a1472fb9f437b7fdab51922b335fd3c63eb25e
     hrefs.each do |url|
       if url.include? "twitter"
         student_details[:twitter] = url
@@ -31,8 +45,19 @@ class Scraper
         student_details[:blog] = url
       end
     end
+<<<<<<< HEAD
     student_details[:profile_quote] = profile.css(".profile-quote").text
     student_details[:bio] = profile.css("div p").text
     student_details
+=======
+
+    student_details[:profile_quote] = profile.css(".profile-quote").text
+    student_details[:bio] = profile.css("div p").text
+    student_details[:profile_url] = profile_url
+student_details
+
+
+
+>>>>>>> e4a1472fb9f437b7fdab51922b335fd3c63eb25e
   end
 end
